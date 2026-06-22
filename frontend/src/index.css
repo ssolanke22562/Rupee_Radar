@@ -1,0 +1,490 @@
+:root {
+  /* Design Tokens - Modern Dark Theme by default with Sky Blue accent & Glassmorphism */
+  --bg-primary: #020617; /* Slate 950 */
+  --bg-gradient: radial-gradient(circle at 20% 20%, #082f49 0%, #020617 70%), 
+                 radial-gradient(circle at 80% 80%, #1e1b4b 0%, #020617 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.03);
+  --bg-surface: rgba(255, 255, 255, 0.04);
+  --bg-surface-hover: rgba(255, 255, 255, 0.07);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --color-primary: #38bdf8; /* Sky 400 */
+  --color-primary-hover: #0ea5e9; /* Sky 500 */
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.1);
+  --color-danger: #f43f5e;
+  --color-danger-bg: rgba(244, 63, 94, 0.1);
+  --color-warning: #fbbf24;
+  --color-warning-bg: rgba(251, 191, 36, 0.1);
+  --color-info: #06b6d4;
+  --color-info-bg: rgba(6, 182, 212, 0.1);
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f0f9ff; /* Light Sky 50 */
+  --bg-gradient: radial-gradient(circle at 20% 20%, #bae6fd 0%, #f0f9ff 70%), 
+                 radial-gradient(circle at 80% 80%, #e0f2fe 0%, #f0f9ff 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.35);
+  --bg-surface: rgba(255, 255, 255, 0.5);
+  --bg-surface-hover: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(14, 165, 233, 0.12);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  --color-primary: #0284c7; /* Sky 600 */
+  --color-primary-hover: #0369a1; /* Sky 700 */
+  
+  --shadow-glass: 0 8px 32px 0 rgba(14, 165, 233, 0.08);
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: color var(--transition-normal);
+}
+
+/* Layout Utilities */
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+/* Glassmorphism Cards */
+.card {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-glass);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.card:hover {
+  background: var(--bg-surface-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .card:hover {
+  border-color: rgba(14, 165, 233, 0.25);
+  box-shadow: 0 10px 40px 0 rgba(14, 165, 233, 0.15);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #0f172a;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);
+}
+
+[data-theme="light"] .btn-primary {
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Form inputs */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  outline: none;
+  font-size: 0.95rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+/* Select dropdown premium styling */
+.select-container select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.1rem;
+  padding-right: 2.5rem !important;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+[data-theme="light"] .select-container select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Beautiful Options Menu across platforms */
+option {
+  background-color: #0f172a !important; /* Dark Slate dropdown background */
+  color: #f8fafc !important;
+  padding: 0.75rem;
+}
+
+[data-theme="light"] option {
+  background-color: #ffffff !important; /* Light background for light theme */
+  color: #0f172a !important;
+}
+
+/* Custom Select & Search Container styles */
+.select-container, .search-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0 0.5rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.select-container:focus-within, .search-container:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Premium 3D Card Effects & Gloss Sweep */
+.card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.card-3d:hover {
+  transform: translateY(-8px) scale(1.02) rotateX(4deg) rotateY(-2deg);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 25px rgba(56, 189, 248, 0.15);
+}
+
+[data-theme="light"] .card-3d:hover {
+  border-color: rgba(14, 165, 233, 0.35);
+  box-shadow: 0 20px 40px rgba(14, 165, 233, 0.12), 0 0 25px rgba(14, 165, 233, 0.08);
+}
+
+/* Gloss Sweep Reflection Overlay */
+.card-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 55%,
+    rgba(255, 255, 255, 0) 65%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 250% 0;
+  transition: background-position 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+[data-theme="light"] .card-3d::before {
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(2, 132, 199, 0.02) 45%,
+    rgba(2, 132, 199, 0.05) 50%,
+    rgba(2, 132, 199, 0.02) 55%,
+    rgba(255, 255, 255, 0) 65%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 250% 0;
+}
+
+.card-3d:hover::before {
+  background-position: -150% 0;
+}
+
+/* Scroll-Driven Entrance Animations */
+.scroll-animate {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-animate.fade-in-up {
+  transform: translateY(30px);
+}
+
+.scroll-animate.zoom-in {
+  transform: scale(0.95);
+}
+
+.scroll-animate.slide-in-left {
+  transform: translateX(-40px);
+}
+
+.scroll-animate.slide-in-right {
+  transform: translateX(40px);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Dashboard Visualizations Custom Styles */
+.analytics-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .analytics-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Donut Chart Styling */
+.donut-svg-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 220px;
+}
+
+.donut-center-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.donut-center-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.donut-center-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 0.1rem;
+}
+
+.donut-center-percent {
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Donut segment interactive rotation/glowing */
+.donut-segment {
+  cursor: pointer;
+  transform-origin: center;
+  transition: stroke-width var(--transition-fast), stroke var(--transition-fast), filter var(--transition-fast);
+}
+
+.donut-segment:hover {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
+}
+
+/* Horizontal Bar Chart Styling */
+.bar-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.bar-chart-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 90px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bar-chart-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-chart-track {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme="light"] .bar-chart-track {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.bar-chart-fill {
+  height: 100%;
+  border-radius: 5px;
+  width: 0%; /* Will animate in React via style attribute */
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+}
+
+.bar-chart-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: right;
+  color: var(--text-primary);
+}
+
+/* Simple keyframe fade for SVG elements */
+@keyframes drawCircle {
+  from {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Slide-in-Up Animation for Network Banner etc. */
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Phase 6.2: Print-Friendly Report Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  .app-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  header, footer, .btn, .btn-primary, .btn-secondary,
+  .card-3d::before, .card-3d:hover, button, select, input {
+    transform: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-color: #e2e8f0 !important;
+    color: #0f172a !important;
+  }
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #ffffff !important;
+  }
+  .search-container, .select-container {
+    display: none !important;
+  }
+  .donut-svg-container {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .analytics-dashboard-grid {
+    grid-template-columns: 1fr 1fr !important;
+    page-break-inside: avoid;
+  }
+}
+
+/* Phase 6.2: Print button in report viewer */
+.report-print-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+
