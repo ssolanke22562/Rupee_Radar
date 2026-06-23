@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.app.database import engine, Base
 from backend.app.api.v1.router import api_router
 import threading
-import time
 import logging
+import os
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -17,10 +17,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware configuration
+# CORS middleware configuration — allow specific origins or all for development
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*")
+origins = [o.strip() for o in CORS_ORIGINS.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],

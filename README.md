@@ -79,3 +79,13 @@ rupee-radar/
    npm run dev
    ```
    *The dashboard will be running at [http://localhost:5173](http://localhost:5173).*
+
+---
+
+## Deployment
+
+For deploying the RupeeRadar application to production:
+- **Backend (FastAPI)**: Deploy on **Railway** using the provided `Dockerfile.backend` and `railway.json`.
+- **Frontend (React)**: Deploy on **Vercel** pointing the Root Directory to the `frontend` subfolder.
+
+See the complete, step-by-step instructions in the [DEPLOYMENT.md](file:///c:/Users/sarth/OneDrive/Desktop/Transaction%20Tracker/DEPLOYMENT.md) file.

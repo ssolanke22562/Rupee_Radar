@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: rupeeradar-frontend
     ports:
-      - "5173:5173"
+      - "5173:80"
     environment:
       - VITE_API_BASE_URL=http://localhost:8000/api/v1
     depends_on:

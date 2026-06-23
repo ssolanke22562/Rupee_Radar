@@ -2,6 +2,7 @@ import os
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timedelta
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -104,7 +105,7 @@ class TestPipeline(unittest.TestCase):
             id="test-session-123",
             filename="hdfc_mock.csv",
             status="pending",
-            expires_at=None
+            expires_at=datetime.utcnow() + timedelta(hours=24)
         )
         self.db.add(session)
         self.db.commit()
