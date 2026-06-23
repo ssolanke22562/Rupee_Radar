@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { FileText, Download, Loader } from 'lucide-react';
+import { API_BASE_URL } from '../api/client';
 
 interface ReportDownloadProps {
   sessionId: string;
   filename: string;
 }
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
 export function ReportDownload({ sessionId, filename }: ReportDownloadProps) {
   const [loading, setLoading] = useState(false);
