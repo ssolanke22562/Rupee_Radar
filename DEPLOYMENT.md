@@ -41,7 +41,7 @@ The backend is built with FastAPI and runs in a Docker container using PostgreSQ
 
 ## 2. Frontend Deployment (Vercel)
 
-The React client is built using Vite and deployed as a static site on Vercel.
+The React client is built using Vite and deployed as a static site on Vercel. Thanks to our root-level workspaces configuration, it deploys automatically without needing manual folder routing on the Vercel dashboard.
 
 ### Step-by-Step Instructions:
 
@@ -53,10 +53,10 @@ The React client is built using Vite and deployed as a static site on Vercel.
    - Select your `Rupee_Radar` repository.
 
 3. **Configure Project Settings**:
-   - **Root Directory**: Set this to `frontend`. (Click **Edit** next to "Root Directory" and select the `frontend` folder). *This is crucial because the Vite configuration and dependencies are located in the sub-folder.*
-   - **Framework Preset**: `Vite` (automatically detected).
-   - **Build Command**: `npm run build` (configured in `frontend/vercel.json`).
-   - **Output Directory**: `dist` (configured in `frontend/vercel.json`).
+   - Vercel will automatically detect the root `package.json` and select the configuration.
+   - **Build Command**: `npm run build` (runs from the root to build the frontend workspace).
+   - **Output Directory**: `frontend/dist` (automatically routed by `vercel.json`).
+   - **Root Directory**: Leave it as the project root (default `./`).
 
 4. **Configure Environment Variables**:
    - Expand the **Environment Variables** section.
@@ -66,4 +66,4 @@ The React client is built using Vite and deployed as a static site on Vercel.
    - *Note: Vite injects environment variables at build-time, so this environment variable must be set before deploying.*
 
 5. **Deploy**:
-   - Click **Deploy**. Vercel will build the frontend and serve it.
+   - Click **Deploy**. Vercel will install dependencies, build the frontend, and serve it.
