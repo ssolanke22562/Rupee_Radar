@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, AlertTriangle, FileWarning } from 'lucide-react';
+import { Upload, AlertTriangle } from 'lucide-react';
 
 interface FileUploadProps {
   onUpload: (file: File, bankHint: string) => void;
