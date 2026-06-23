@@ -1,0 +1,8 @@
+backend/
+requirements.txt
+Dockerfile.backend
+Dockerfile.frontend
+docker-compose.yml
+nginx.conf
+railway.json
+docs/
